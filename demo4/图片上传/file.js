@@ -35,12 +35,6 @@ function upload(req,res){
 		return;
 	}
 	var form = new formidable.IncomingForm();
-	//这个暂时失效 监听收到的字节数和总字节数
-	form.on('progress',function(bytesReceived,bytesExpected){
-		console.log('precent in');
-		var percent = Math.floor(bytesReceived/bytesExpected*100);
-		console.log('precent: '+precent);
-	});
 	form.on('field',function(field,value){
 		console.log('field: '+field);
 		console.log('value: '+value);
@@ -51,7 +45,7 @@ function upload(req,res){
 	});
 	form.on('end',function(){
 		res.end('upload complete');
-	});
+	})
 	form.parse(req);
 }
 
